@@ -113,6 +113,8 @@ const (
 
 func (t CmdType) String() string {
 	switch t {
+	case CmdPrintStats:
+		return "PrintStats"
 	case CmdGet:
 		return "Get"
 	case CmdScan:

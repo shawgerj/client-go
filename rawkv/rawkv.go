@@ -411,6 +411,20 @@ func (c *Client) DeleteRange(ctx context.Context, startKey []byte, endKey []byte
 	return nil
 }
 
+// PrintStats directs TiKV to print the current rocksdb stats to a log file
+func (c *Client) PrintStats(ctx context.Context, key) err {
+	req := tikvrpc.NewRequest(tikvrpc.CmdPrintStats, &kvrpcpb.RawPrintStatsRequest{})
+	
+	resp, loc, err := c.sendReq(ctx, key, req, false)
+	if err != nil {
+		return err
+	}
+	if resp.Resp == nil {
+		return errors.WithStack(tikverr.ErrBodyMissing)
+	}
+	return
+}
+
 // Scan queries continuous kv pairs in range [startKey, endKey), up to limit pairs.
 // The returned keys are in lexicographical order.
 // If endKey is empty, it means unbounded.
