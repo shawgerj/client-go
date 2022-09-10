@@ -74,7 +74,8 @@ const (
 	CmdCheckSecondaryLocks
 	CmdFlashbackToVersion
 
-	CmdRawGet CmdType = 256 + iota
+	CmdRawPrintStats CmdType = 256 + iota
+	CmdRawGet
 	CmdRawBatchGet
 	CmdRawPut
 	CmdRawBatchPut
@@ -116,8 +117,6 @@ const (
 
 func (t CmdType) String() string {
 	switch t {
-	case CmdPrintStats:
-		return "PrintStats"
 	case CmdGet:
 		return "Get"
 	case CmdScan:
@@ -144,6 +143,8 @@ func (t CmdType) String() string {
 		return "GC"
 	case CmdDeleteRange:
 		return "DeleteRange"
+	case CmdRawPrintStats:
+		return "RawPrintStats"
 	case CmdRawGet:
 		return "RawGet"
 	case CmdRawBatchGet:
@@ -339,6 +340,11 @@ func (req *Request) GC() *kvrpcpb.GCRequest {
 // DeleteRange returns DeleteRangeRequest in request.
 func (req *Request) DeleteRange() *kvrpcpb.DeleteRangeRequest {
 	return req.Req.(*kvrpcpb.DeleteRangeRequest)
+}
+
+// RawPrintStats returns RawPrintStatsRequest in request
+func (req *Request) RawPrintStats() *kvrpcpb.RawPrintStatsRequest {
+	return req.Req.(*kvrpcpb.RawPrintStatsRequest)
 }
 
 // RawGet returns RawGetRequest in request.
@@ -546,6 +552,8 @@ func (req *Request) ToBatchCommandsRequest() *tikvpb.BatchCommandsRequest_Reques
 		return &tikvpb.BatchCommandsRequest_Request{Cmd: &tikvpb.BatchCommandsRequest_Request_GC{GC: req.GC()}}
 	case CmdDeleteRange:
 		return &tikvpb.BatchCommandsRequest_Request{Cmd: &tikvpb.BatchCommandsRequest_Request_DeleteRange{DeleteRange: req.DeleteRange()}}
+	case CmdRawPrintStats:
+		return &tikvpb.BatchCommandsRequest_Request{Cmd: &tikvpb.BatchCommandsRequest_Request_RawPrintStats{RawPrintStats: req.RawPrintStats()}}
 	case CmdRawGet:
 		return &tikvpb.BatchCommandsRequest_Request{Cmd: &tikvpb.BatchCommandsRequest_Request_RawGet{RawGet: req.RawGet()}}
 	case CmdRawBatchGet:
@@ -617,6 +625,8 @@ func FromBatchCommandsResponse(res *tikvpb.BatchCommandsResponse_Response) (*Res
 		return &Response{Resp: res.DeleteRange}, nil
 	case *tikvpb.BatchCommandsResponse_Response_FlashbackToVersion:
 		return &Response{Resp: res.FlashbackToVersion}, nil
+	case *tikvpb.BatchCommandsResponse_Response_RawPrintStats:
+		return &Response{Resp: res.RawPrintStats), nil
 	case *tikvpb.BatchCommandsResponse_Response_RawGet:
 		return &Response{Resp: res.RawGet}, nil
 	case *tikvpb.BatchCommandsResponse_Response_RawBatchGet:
@@ -713,6 +723,8 @@ func SetContext(req *Request, region *metapb.Region, peer *metapb.Peer) error {
 		req.GC().Context = ctx
 	case CmdDeleteRange:
 		req.DeleteRange().Context = ctx
+	case CmdRawPrintStats:
+		req.RawPrintStats().Context = ctx
 	case CmdRawGet:
 		req.RawGet().Context = ctx
 	case CmdRawBatchGet:
@@ -831,6 +843,10 @@ func GenRegionErrorResp(req *Request, e *errorpb.Error) (*Response, error) {
 		}
 	case CmdDeleteRange:
 		p = &kvrpcpb.DeleteRangeResponse{
+			RegionError: e,
+		}
+	case CmdRawPrintStats:
+		p = &kvrpcpb.RawPrintStatsResponse{
 			RegionError: e,
 		}
 	case CmdRawGet:
@@ -995,6 +1011,8 @@ func CallRPC(ctx context.Context, client tikvpb.TikvClient, req *Request) (*Resp
 		resp.Resp, err = client.KvGC(ctx, req.GC())
 	case CmdDeleteRange:
 		resp.Resp, err = client.KvDeleteRange(ctx, req.DeleteRange())
+	case CmdRawPrintStats:
+		resp.Resp, err = client.RawPrintStats(ctx, req.RawPrintStats())
 	case CmdRawGet:
 		resp.Resp, err = client.RawGet(ctx, req.RawGet())
 	case CmdRawBatchGet:

@@ -132,6 +132,10 @@ func EncodeRequest(req *tikvrpc.Request) (*tikvrpc.Request, error) {
 
 	// TODO(iosmanthus): support transaction request types
 	switch req.Type {
+	case tikvrpc.CmdPrintStats:
+		r := *req.RawPrintStats()
+		r.Key = EncodeV2Key(ModeRaw, r.Key)
+		newReq.Req = &r
 	case tikvrpc.CmdRawGet:
 		r := *req.RawGet()
 		r.Key = EncodeV2Key(ModeRaw, r.Key)
