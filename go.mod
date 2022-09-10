@@ -1,4 +1,4 @@
-module github.com/shawgerj/client-go/v2
+module github.com/tikv/client-go/v2
 
 go 1.18
 
@@ -59,4 +59,4 @@ require (
 	stathat.com/c/consistent v1.0.0 // indirect
 )
 
-replace github.com/tikv/client-go/v2 => github.com/shawgerj/client-go/v2 latest
+replace github.com/tikv/client-go/v2 => github.com/shawgerj/client-go/v2 v2.0.0-20220910201517-c4297055704c
