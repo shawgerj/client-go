@@ -597,8 +597,8 @@ func FromBatchCommandsResponse(res *tikvpb.BatchCommandsResponse_Response) (*Res
 		return &Response{Resp: res.GC}, nil
 	case *tikvpb.BatchCommandsResponse_Response_DeleteRange:
 		return &Response{Resp: res.DeleteRange}, nil
-	case *tikvpb.BatchCommandsResponse_Response_FlashbackToVersion:
-		return &Response{Resp: res.FlashbackToVersion}, nil
+		//	case *tikvpb.BatchCommandsResponse_Response_FlashbackToVersion:
+		//		return &Response{Resp: res.FlashbackToVersion}, nil
 	case *tikvpb.BatchCommandsResponse_Response_RawPrintStats:
 		return &Response{Resp: res.RawPrintStats}, nil
 	case *tikvpb.BatchCommandsResponse_Response_RawGet:

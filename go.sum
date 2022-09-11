@@ -195,6 +195,16 @@ github.com/remyoudompheng/bigfft v0.0.0-20200410134404-eec4a21b6bb0/go.mod h1:qq
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
 github.com/sergi/go-diff v1.1.0/go.mod h1:STckp+ISIX8hZLjrqAeVduY0gWCT9IjLuqbuNXdaHfM=
+github.com/shawgerj/kvproto v0.0.0-20220911182310-dc07ccaec954 h1:pCMli8PSQwTUu6grFc27Zb3Mgsixwrq1NQPotcy6wbM=
+github.com/shawgerj/kvproto v0.0.0-20220911182310-dc07ccaec954/go.mod h1:IOdRDPLyda8GX2hE/jO7gqaCV/PNFh8BZQCQZXfIOqI=
+github.com/shawgerj/kvproto v0.0.0-20220911184833-aa3752f277c0 h1:owNJVCUbW38yNgElMed9wmpeVagtKrgBtFlnfN9Buz8=
+github.com/shawgerj/kvproto v0.0.0-20220911184833-aa3752f277c0/go.mod h1:IOdRDPLyda8GX2hE/jO7gqaCV/PNFh8BZQCQZXfIOqI=
+github.com/shawgerj/kvproto v0.0.0-20220911190920-2a47cd41aed9 h1:C7IGoxSPb6VtIRB16Pww1ShXFpAKcHJO0jUtn9Qb/FM=
+github.com/shawgerj/kvproto v0.0.0-20220911190920-2a47cd41aed9/go.mod h1:IOdRDPLyda8GX2hE/jO7gqaCV/PNFh8BZQCQZXfIOqI=
+github.com/shawgerj/kvproto v0.0.0-20220911192755-fe0ff0f3e4ac h1:kmeA6lt05GTCMP50wRBNJ5F/6pQkslxJPNHlKylBbO0=
+github.com/shawgerj/kvproto v0.0.0-20220911192755-fe0ff0f3e4ac/go.mod h1:IOdRDPLyda8GX2hE/jO7gqaCV/PNFh8BZQCQZXfIOqI=
+github.com/shawgerj/kvproto v0.0.0-20220911195130-33bb77fddcb6 h1:E6UC7MY66cOADCXVLHzfEVgmncJDs/MzJSng4o6wemg=
+github.com/shawgerj/kvproto v0.0.0-20220911195130-33bb77fddcb6/go.mod h1:IOdRDPLyda8GX2hE/jO7gqaCV/PNFh8BZQCQZXfIOqI=
 github.com/sirupsen/logrus v1.2.0/go.mod h1:LxeOpSwHxABJmUn/MG1IvRgCAasNZTLOkJPxbbu5VWo=
 github.com/sirupsen/logrus v1.4.2/go.mod h1:tLMulIdttU9McNUspp0xgXVQah82FyeX6MwdIuYE2rE=
 github.com/sirupsen/logrus v1.6.0/go.mod h1:7uNnSEd1DgxDLC74fIahvMZmmYsHGZGEOFrfsX/uA88=
