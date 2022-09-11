@@ -600,7 +600,7 @@ func FromBatchCommandsResponse(res *tikvpb.BatchCommandsResponse_Response) (*Res
 	case *tikvpb.BatchCommandsResponse_Response_FlashbackToVersion:
 		return &Response{Resp: res.FlashbackToVersion}, nil
 	case *tikvpb.BatchCommandsResponse_Response_RawPrintStats:
-		return &Response{Resp: res.RawPrintStats), nil
+		return &Response{Resp: res.RawPrintStats}, nil
 	case *tikvpb.BatchCommandsResponse_Response_RawGet:
 		return &Response{Resp: res.RawGet}, nil
 	case *tikvpb.BatchCommandsResponse_Response_RawBatchGet:
