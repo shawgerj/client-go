@@ -36,4 +36,4 @@ require (
 
 replace github.com/tikv/client-go/v2 => github.com/shawgerj/client-go/v2 v2.0.0-20220911195423-0180cff27fcc
 
-replace github.com/pingcap/kvproto => github.com/shawgerj/kvproto v0.0.0-20220911195130-33bb77fddcb6
+replace github.com/pingcap/kvproto => github.com/shawgerj/kvproto v0.0.0-20220921235339-c0618d54c94b
